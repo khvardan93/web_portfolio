@@ -91,6 +91,17 @@ body {
   color: var(--muted);
   margin: 48px 0 16px;
 }
+.studio-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 12px;
+  border: 1px solid var(--cyan-dim);
+  background: var(--surface);
+}
+.studio-title { display: flex; align-items: center; }
 h1 {
   font-family: var(--font-display);
   font-weight: 600;
@@ -188,6 +199,8 @@ h2 {
   padding: 24px;
   margin-bottom: 14px;
 }
+.game-card-head { display: flex; align-items: center; gap: 12px; }
+.game-icon { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; border: 1px solid var(--cyan-dim); }
 .game-card h3 { font-family: var(--font-display); font-size: 20px; color: var(--text); }
 .game-card .role { font-family: var(--font-mono); font-size: 12px; color: var(--orange); margin: 2px 0 10px; }
 .game-card p { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
