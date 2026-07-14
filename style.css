@@ -140,6 +140,16 @@ h2 {
   background: var(--surface-2);
   transform: translateX(4px);
 }
+.studio-row-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid var(--cyan-dim);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+.studio-row > div { flex: 1; }
 .studio-row h3 { font-family: var(--font-display); font-size: 18px; color: var(--text); }
 .studio-row p { font-size: 13px; color: var(--muted); }
 .studio-years { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); white-space: nowrap; }
