@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="container">
@@ -17,9 +17,9 @@
     <nav class="nav">
       <a class="nav-logo" href="index.html">VK<span>_</span></a>
       <div class="nav-links">
-        <a href="#studios">studios</a>
-        <a href="#projects">projects</a>
-        <a href="#contact">contact</a>
+        <a href="#studios">STUDIOS</a>
+        <a href="#projects">PROJECTS</a>
+        <a href="#contact">CONTACTS</a>
       </div>
     </nav>
 
@@ -43,7 +43,7 @@
     <section id="studios">
       <p class="section-label">// SELECT STUDIO</p>
 
-      <a class="studio-row" href="estoty.html">
+      <a class="studio-row" href="pages/estoty.html">
         <img class="studio-row-logo" src="assets/logos/estoty.png" alt="Estoty logo">
         <div>
           <h3>Estoty</h3>
@@ -52,7 +52,7 @@
         <span class="studio-years">2024–2026 →</span>
       </a>
 
-      <a class="studio-row" href="murka.html">
+      <a class="studio-row" href="pages/murka.html">
         <img class="studio-row-logo" src="assets/logos/murka.png" alt="Murka logo">
         <div>
           <h3>Murka</h3>
@@ -61,7 +61,7 @@
         <span class="studio-years">2022–2024 →</span>
       </a>
 
-      <a class="studio-row" href="evistep.html">
+      <a class="studio-row" href="pages/evistep.html">
         <img class="studio-row-logo" src="assets/logos/evistep.png" alt="Evistep logo">
         <div>
           <h3>Evistep</h3>
@@ -75,13 +75,13 @@
       <p class="section-label">// PERSONAL PROJECTS — PLAYABLE IN BROWSER</p>
       <div class="project-grid">
 
-        <a class="project-card" href="racercar.html">
+        <a class="project-card" href="pages/racercar.html">
           <h3>RacerCar</h3>
           <p>2-player online multiplayer racing — Photon Fusion Host Mode, Zenject, WebGL on GitHub Pages.</p>
           <span class="btn btn-play">▶ VIEW &amp; PLAY</span>
         </a>
 
-        <a class="project-card" href="domino.html">
+        <a class="project-card" href="pages/domino.html">
           <h3>Բakyi Domino</h3>
           <p>Culturally authentic Armenian courtyard domino — Fusion 2 Shared Mode, targeting WebGL and Facebook Instant Games.</p>
           <span class="btn btn-ghost">IN DEVELOPMENT</span>
@@ -110,15 +110,55 @@
       </div>
     </section>
 
-    <footer class="footer" id="contact">
-      <p>
-        <a href="https://github.com/khvardan93" target="_blank" rel="noopener noreferrer">github</a> ·
-        <a href="https://www.linkedin.com/in/vardan-khasikyan-5461a398/" target="_blank" rel="noopener noreferrer">linkedin</a> ·
-        <a href="mailto:vardan.khasikyan93@gmail.com">vardan.khasikyan93@gmail.com</a>
-      </p>
-      <p style="margin-top:6px;">© 2026 Vardan Khasikyan — built with plain HTML/CSS, deployed on GitHub Pages, with the help of Claude (Anthropic)</p>
+    <section id="contact">
+      <p class="section-label">// CONTACT</p>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:vardan.khasikyan93@gmail.com" data-copy="vardan.khasikyan93@gmail.com">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6.5 8 6 8-6"/></svg>
+          <div><span class="contact-label">Email</span><span class="contact-value">vardan.khasikyan93@gmail.com</span></div>
+        </a>
+        <a class="contact-card" href="tel:+37494103281" data-copy="+37494103281">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4.5 3.5h3l1.5 4.5-2 1.5a11 11 0 0 0 6 6l1.5-2 4.5 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 2.5 5.7a2 2 0 0 1 2-2.2Z"/></svg>
+          <div><span class="contact-label">Phone</span><span class="contact-value">+374 94 103281</span></div>
+        </a>
+        <a class="contact-card" href="https://t.me/khvardan" target="_blank" rel="noopener noreferrer">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m21 4-3 16-6-4.5L8 19l1-6L21 4Z"/><path d="M8 13 21 4"/></svg>
+          <div><span class="contact-label">Telegram</span><span class="contact-value">@khvardan</span></div>
+        </a>
+        <a class="contact-card" href="https://github.com/khvardan93" target="_blank" rel="noopener noreferrer">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.93.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.35 4.7-4.58 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+          <div><span class="contact-label">GitHub</span><span class="contact-value">khvardan93</span></div>
+        </a>
+        <a class="contact-card" href="https://www.linkedin.com/in/vardan-khasikyan-5461a398/" target="_blank" rel="noopener noreferrer">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7.5 10.5v6M7.5 7.5v.01M12 16.5v-3.7a2.3 2.3 0 0 1 4.6 0v3.7M12 12.8v3.7"/></svg>
+          <div><span class="contact-label">LinkedIn</span><span class="contact-value">vardan-khasikyan</span></div>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© 2026 Vardan Khasikyan — built with plain HTML/CSS, deployed on GitHub Pages, with the help of Claude (Anthropic)</p>
     </footer>
 
   </div>
+
+  <script>
+    document.querySelectorAll('.contact-card[data-copy]').forEach(function (card) {
+      card.addEventListener('click', function () {
+        var value = card.getAttribute('data-copy');
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(value).then(function () {
+          var valueEl = card.querySelector('.contact-value');
+          var original = valueEl.textContent;
+          valueEl.textContent = 'Copied ✓';
+          card.classList.add('is-copied');
+          setTimeout(function () {
+            valueEl.textContent = original;
+            card.classList.remove('is-copied');
+          }, 1500);
+        });
+      });
+    });
+  </script>
 </body>
 </html>

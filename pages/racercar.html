@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RacerCar — Vardan Khasikyan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="container">
+
+    <nav class="nav">
+      <a class="nav-logo" href="../index.html">VK<span>_</span></a>
+      <div class="nav-links"><a href="../index.html">← home</a></div>
+    </nav>
+
+    <header class="page-head">
+      <div class="hud hud-orange">
+        <span class="corner"></span>
+        <p class="eyebrow">Personal project — playable below</p>
+        <h1>RacerCar</h1>
+        <p class="lede">2-player online multiplayer racing game. Host Mode networking with input
+        authority and full player spawn/despawn lifecycle, dependency injection via Zenject with a
+        custom NetworkObjectProvider, PiP rival camera feed, and a WebGL build deployed to GitHub
+        Pages through a GitHub Actions + game-ci pipeline.</p>
+      </div>
+    </header>
+
+    <p class="section-label">// TECH STACK</p>
+    <div class="tech-chips">
+      <span class="chip">Unity 6</span>
+      <span class="chip">C#</span>
+      <span class="chip">Photon Fusion 2 — Host Mode</span>
+      <span class="chip">Zenject</span>
+      <span class="chip">UniTask</span>
+      <span class="chip">URP</span>
+      <span class="chip">Cinemachine</span>
+      <span class="chip">TextMeshPro</span>
+      <span class="chip">WebGL</span>
+      <span class="chip">GitHub Actions + game-ci</span>
+    </div>
+
+    <p class="section-label">// GAMEPLAY VIDEOS</p>
+    <div class="video-grid">
+      <div class="video-card video-card-wide">
+        <video autoplay muted loop playsinline preload="auto" src="../assets/videos/racercar/intro.mp4"></video>
+        <p class="video-caption">Intro</p>
+      </div>
+      <div class="video-card">
+        <video autoplay muted loop playsinline preload="auto" src="../assets/videos/racercar/main-menu.mp4"></video>
+        <p class="video-caption">Main Menu</p>
+      </div>
+      <div class="video-card">
+        <video autoplay muted loop playsinline preload="auto" src="../assets/videos/racercar/loading.mp4"></video>
+        <p class="video-caption">Loading</p>
+      </div>
+      <div class="video-card">
+        <video autoplay muted loop playsinline preload="auto" src="../assets/videos/racercar/settings.mp4"></video>
+        <p class="video-caption">Settings</p>
+      </div>
+      <div class="video-card">
+        <video autoplay muted loop playsinline preload="auto" src="../assets/videos/racercar/gameplay.mp4"></video>
+        <p class="video-caption">Gameplay</p>
+      </div>
+    </div>
+
+    <p class="section-label">// PLAY IN BROWSER</p>
+    <div class="webgl-frame hud hud-orange" id="webgl-frame" data-src="https://khvardan93.github.io/racing_multiplayer/">
+      <span class="corner"></span>
+      <div class="webgl-start">
+        <button class="btn btn-play" id="webgl-start-btn" type="button">▶ START GAME</button>
+        <p class="webgl-hint">Loads the WebGL build in this frame</p>
+      </div>
+    </div>
+    <p style="font-family:var(--font-mono); font-size:12px; color:var(--muted); margin-bottom:24px;">
+      Tip: open in two browser windows to race against yourself.
+      <a href="https://github.com/khvardan93/racing_multiplayer" style="color:var(--cyan);" target="_blank" rel="noopener noreferrer">View source on GitHub →</a>
+    </p>
+
+    <footer class="footer">
+      <p><a href="../index.html">← back to home</a></p>
+      <p style="margin-top:6px;">Built with the help of Claude (Anthropic)</p>
+    </footer>
+
+  </div>
+
+  <script>
+    var webglFrame = document.getElementById('webgl-frame');
+    var webglStartBtn = document.getElementById('webgl-start-btn');
+    webglStartBtn.addEventListener('click', function () {
+      var iframe = document.createElement('iframe');
+      iframe.src = webglFrame.getAttribute('data-src');
+      iframe.title = 'RacerCar — playable WebGL build';
+      iframe.setAttribute('allow', 'fullscreen; gamepad');
+      webglFrame.querySelector('.webgl-start').remove();
+      webglFrame.appendChild(iframe);
+    });
+  </script>
+</body>
+</html>
