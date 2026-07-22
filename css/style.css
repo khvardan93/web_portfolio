@@ -154,6 +154,53 @@ h2 {
 .studio-row p { font-size: 13px; color: var(--muted); }
 .studio-years { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); white-space: nowrap; }
 
+/* ---------- All-games scroll ---------- */
+.games-scroll-mask {
+  overflow-y: auto;
+  max-height: 640px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 64px, black calc(100% - 64px), transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 64px, black calc(100% - 64px), transparent);
+  padding: 4px 0;
+}
+.games-scroll { display: flex; flex-direction: column; gap: 12px; padding: 4px 0; }
+.game-scroll-card {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--cyan-dim);
+  border-left: 3px solid var(--cyan);
+  padding: 14px 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s;
+}
+.game-scroll-card:hover, .game-scroll-card:focus-visible { background: var(--surface-2); }
+.game-scroll-icon { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; flex-shrink: 0; border: 1px solid var(--cyan-dim); }
+.game-scroll-info { flex: 1; min-width: 0; }
+.game-scroll-info h4 {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 6px;
+}
+.game-scroll-info .game-tags { margin: 0; }
+.game-scroll-company {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  padding-left: 12px;
+  border-left: 1px solid var(--cyan-dim);
+}
+.game-scroll-company img { width: 26px; height: 26px; border-radius: 6px; object-fit: cover; }
+.game-scroll-company span { font-family: var(--font-mono); font-size: 10px; color: var(--muted); white-space: nowrap; }
+
 /* ---------- Project cards ---------- */
 .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
 .project-card {
