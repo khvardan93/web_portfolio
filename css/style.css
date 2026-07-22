@@ -217,6 +217,19 @@ h2 {
 .game-card ul { margin: 0 0 16px 18px; font-size: 14px; color: var(--muted); }
 .game-card li { margin-bottom: 4px; }
 
+.game-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  line-height: 1.4;
+}
+.tag-genre { color: var(--muted); border: 1px solid var(--cyan-dim); background: rgba(63, 216, 234, 0.04); }
+.tag-tech { color: var(--cyan); border: 1px solid var(--cyan-dim); background: rgba(63, 216, 234, 0.06); }
+.tag-multiplayer { color: var(--orange); border: 1px solid var(--orange-dim); background: rgba(255, 138, 61, 0.1); font-weight: 600; }
+
 /* ---------- Screenshots & WebGL ---------- */
 .shot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 20px 0; }
 .shot-grid img {
