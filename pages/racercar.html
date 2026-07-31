@@ -19,10 +19,11 @@
     </nav>
 
     <header class="page-head">
+      <img class="page-head-logo" src="../assets/games/racercar-logo.png" alt="RacerCar logo">
+      <h1 class="sr-only">RacerCar</h1>
       <div class="hud hud-orange">
         <span class="corner"></span>
         <p class="eyebrow">Personal project — playable below</p>
-        <h1>RacerCar</h1>
         <p class="lede">2-player online multiplayer racing game. Host Mode networking with input
         authority and full player spawn/despawn lifecycle, dependency injection via Zenject with a
         custom NetworkObjectProvider, PiP rival camera feed, and a WebGL build deployed to GitHub
@@ -75,6 +76,7 @@
         <button class="btn btn-play" id="webgl-start-btn" type="button">▶ START GAME</button>
         <p class="webgl-hint">Loads the WebGL build in this frame</p>
       </div>
+      <button class="webgl-fullscreen-btn" id="webgl-fullscreen-btn" type="button" title="Fullscreen" hidden>⛶</button>
     </div>
     <p style="font-family:var(--font-mono); font-size:12px; color:var(--muted); margin-bottom:24px;">
       Tip: open in two browser windows to race against yourself.
@@ -91,13 +93,21 @@
   <script>
     var webglFrame = document.getElementById('webgl-frame');
     var webglStartBtn = document.getElementById('webgl-start-btn');
+    var webglFullscreenBtn = document.getElementById('webgl-fullscreen-btn');
+    var webglIframe;
     webglStartBtn.addEventListener('click', function () {
-      var iframe = document.createElement('iframe');
-      iframe.src = webglFrame.getAttribute('data-src');
-      iframe.title = 'RacerCar — playable WebGL build';
-      iframe.setAttribute('allow', 'fullscreen; gamepad');
+      webglIframe = document.createElement('iframe');
+      webglIframe.src = webglFrame.getAttribute('data-src');
+      webglIframe.title = 'RacerCar — playable WebGL build';
+      webglIframe.setAttribute('allow', 'fullscreen; gamepad');
       webglFrame.querySelector('.webgl-start').remove();
-      webglFrame.appendChild(iframe);
+      webglFrame.insertBefore(webglIframe, webglFullscreenBtn);
+      webglFullscreenBtn.hidden = false;
+    });
+    webglFullscreenBtn.addEventListener('click', function () {
+      if (webglIframe && webglIframe.requestFullscreen) {
+        webglIframe.requestFullscreen();
+      }
     });
   </script>
 </body>

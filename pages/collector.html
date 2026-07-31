@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collector — Vardan Khasikyan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="container">
+
+    <nav class="nav">
+      <a class="nav-logo" href="../index.html">VK<span>_</span></a>
+      <div class="nav-links"><a href="../index.html">← home</a></div>
+    </nav>
+
+    <header class="page-head">
+      <img class="page-head-logo" src="../assets/games/collector-logo.png" alt="Collector logo">
+      <h1 class="sr-only">Collector</h1>
+      <div class="hud hud-orange">
+        <span class="corner"></span>
+        <p class="eyebrow">Personal project — playable below</p>
+        <p class="lede">A third-person collect-a-thon. Walk the character through a low-poly open
+        world and gather coins, gems, and stars — each level sets a target amount of each item to
+        collect within a time limit. Run out of time before hitting every target and the level is
+        lost, with an option to add extra time and keep going.</p>
+      </div>
+    </header>
+
+    <p class="section-label">// TECH STACK</p>
+    <div class="tech-chips">
+      <span class="chip">Unity 6</span>
+      <span class="chip">C#</span>
+      <span class="chip">Third-person character controller</span>
+      <span class="chip">Level/objective system</span>
+      <span class="chip">Timer-based fail state</span>
+      <span class="chip">WebGL</span>
+    </div>
+
+    <p class="section-label">// SCREENSHOTS</p>
+    <div class="slideshow hud hud-orange" id="slideshow">
+      <span class="corner"></span>
+      <div class="slideshow-track">
+        <img class="slideshow-slide is-active" src="../assets/collector/collector-1.jpg" alt="Collector main menu with Play button">
+        <img class="slideshow-slide" src="../assets/collector/collector-2.jpg" alt="Collector pause screen">
+        <img class="slideshow-slide" src="../assets/collector/collector-3.jpg" alt="Collector gameplay with collection HUD and timer">
+        <img class="slideshow-slide" src="../assets/collector/collector-4.jpg" alt="Collector level lost screen">
+        <img class="slideshow-slide" src="../assets/collector/collector-5.jpg" alt="Collector add time screen">
+      </div>
+      <button class="slideshow-nav slideshow-prev" id="slideshow-prev" type="button" aria-label="Previous screenshot">‹</button>
+      <button class="slideshow-nav slideshow-next" id="slideshow-next" type="button" aria-label="Next screenshot">›</button>
+      <div class="slideshow-dots" id="slideshow-dots"></div>
+    </div>
+
+    <p class="section-label">// PLAY IN BROWSER</p>
+    <div class="webgl-frame hud hud-orange" id="webgl-frame" data-src="https://khvardan93.github.io/collection_game/">
+      <span class="corner"></span>
+      <div class="webgl-start" style="aspect-ratio:960/600;">
+        <button class="btn btn-play" id="webgl-start-btn" type="button">▶ START GAME</button>
+        <p class="webgl-hint">Loads the WebGL build in this frame</p>
+      </div>
+      <button class="webgl-fullscreen-btn" id="webgl-fullscreen-btn" type="button" title="Fullscreen" hidden>⛶</button>
+    </div>
+    <p style="font-family:var(--font-mono); font-size:12px; color:var(--muted); margin-bottom:24px;">
+      <a href="https://github.com/khvardan93/collection_game" style="color:var(--cyan);" target="_blank" rel="noopener noreferrer">View source on GitHub →</a>
+    </p>
+
+    <footer class="footer">
+      <p><a href="../index.html">← back to home</a></p>
+    </footer>
+
+  </div>
+
+  <script>
+    (function () {
+      var slides = document.querySelectorAll('#slideshow .slideshow-slide');
+      var dotsContainer = document.getElementById('slideshow-dots');
+      var current = 0;
+
+      slides.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'slideshow-dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'Go to screenshot ' + (i + 1));
+        dot.addEventListener('click', function () { goTo(i); });
+        dotsContainer.appendChild(dot);
+      });
+      var dots = document.querySelectorAll('.slideshow-dot');
+
+      function goTo(index) {
+        slides[current].classList.remove('is-active');
+        dots[current].classList.remove('is-active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('is-active');
+        dots[current].classList.add('is-active');
+      }
+
+      var autoplayDelay = 1000;
+      var autoplay = setInterval(function () { goTo(current + 1); }, autoplayDelay);
+
+      function resetAutoplay() {
+        clearInterval(autoplay);
+        autoplay = setInterval(function () { goTo(current + 1); }, autoplayDelay);
+      }
+
+      document.getElementById('slideshow-prev').addEventListener('click', function () { goTo(current - 1); resetAutoplay(); });
+      document.getElementById('slideshow-next').addEventListener('click', function () { goTo(current + 1); resetAutoplay(); });
+      dots.forEach(function (dot) { dot.addEventListener('click', resetAutoplay); });
+    })();
+
+    var webglFrame = document.getElementById('webgl-frame');
+    var webglStartBtn = document.getElementById('webgl-start-btn');
+    var webglFullscreenBtn = document.getElementById('webgl-fullscreen-btn');
+    var webglIframe;
+    webglStartBtn.addEventListener('click', function () {
+      var stage = document.createElement('div');
+      stage.className = 'webgl-stage';
+
+      webglIframe = document.createElement('iframe');
+      webglIframe.src = webglFrame.getAttribute('data-src');
+      webglIframe.title = 'Collector — playable WebGL build';
+      webglIframe.setAttribute('allow', 'fullscreen; gamepad');
+      webglIframe.setAttribute('scrolling', 'no');
+      webglIframe.width = 960;
+      webglIframe.height = 600;
+
+      stage.appendChild(webglIframe);
+      webglFrame.querySelector('.webgl-start').remove();
+      webglFrame.insertBefore(stage, webglFullscreenBtn);
+      webglFullscreenBtn.hidden = false;
+
+      function scaleStage() {
+        var frameStyle = getComputedStyle(webglFrame);
+        var paddingX = parseFloat(frameStyle.paddingLeft) + parseFloat(frameStyle.paddingRight);
+        var paddingY = parseFloat(frameStyle.paddingTop) + parseFloat(frameStyle.paddingBottom);
+        var availableWidth = webglFrame.clientWidth - paddingX;
+        var scale = availableWidth / 960;
+        stage.style.transform = 'scale(' + scale + ')';
+        webglFrame.style.height = (600 * scale + paddingY) + 'px';
+      }
+      scaleStage();
+      window.addEventListener('resize', scaleStage);
+    });
+    webglFullscreenBtn.addEventListener('click', function () {
+      if (webglIframe && webglIframe.requestFullscreen) {
+        webglIframe.requestFullscreen();
+      }
+    });
+  </script>
+</body>
+</html>
