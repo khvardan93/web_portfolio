@@ -500,3 +500,6 @@ h2 {
   .studio-row { flex-direction: column; align-items: flex-start; gap: 6px; }
   .video-grid { grid-template-columns: 1fr; }
 }
+/* Wide slideshow (Domino): same width as the page, frame matches the ~2:1 screenshots so nothing is cut */
+.slideshow-wide .slideshow-track { aspect-ratio: 1280/633; background: #000; }
+.slideshow-wide .slideshow-slide { object-fit: contain; }

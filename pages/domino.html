@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Բakyi Domino — Vardan Khasikyan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="container">
+
+    <nav class="nav">
+      <a class="nav-logo" href="../index.html">VK<span>_</span></a>
+      <div class="nav-links"><a href="../index.html">← home</a></div>
+    </nav>
+
+    <header class="page-head">
+      <img class="page-head-logo" src="../assets/games/domino-logo.png" alt="Courtyard Domino logo">
+      <h1 class="sr-only">Բakyi Domino</h1>
+      <div class="hud hud-orange">
+        <span class="corner"></span>
+        <p class="eyebrow">Personal project — demo playable below</p>
+        <p class="lede">A domino game inspired by the courtyard domino tables of Armenia, with six traditional
+        variants: Telephone (the default), Kozel, Classic Kozel, Sea Goat, General and Chechevitsa, each a rule
+        class behind a shared interface. Online rooms run on Photon Fusion 2 Shared Mode with a deterministic
+        lockstep session: players agree on the deal through a SHA-256 commit-reveal seed so nobody can rig the
+        shuffle, every move carries a state hash to catch desyncs, and bots take over seats when someone leaves.
+        Zenject wires the layers together, the UI is localized in Armenian, English and Russian, and 180 automated
+        tests cover rules, game flow, online and UI.</p>
+      </div>
+    </header>
+
+    <p class="section-label">// TECH STACK</p>
+    <div class="tech-chips">
+      <span class="chip">Unity 6</span>
+      <span class="chip">C#</span>
+      <span class="chip">Photon Fusion 2 (Shared Mode)</span>
+      <span class="chip">Deterministic lockstep</span>
+      <span class="chip">Commit-reveal seeding (SHA-256)</span>
+      <span class="chip">Zenject</span>
+      <span class="chip">DOTween</span>
+      <span class="chip">URP</span>
+      <span class="chip">uGUI + TextMeshPro</span>
+      <span class="chip">Input System</span>
+      <span class="chip">Localization (HY / EN / RU)</span>
+      <span class="chip">Bot AI</span>
+      <span class="chip">Unity Test Framework</span>
+      <span class="chip">WebGL</span>
+      <span class="chip">Facebook Instant Games</span>
+    </div>
+
+    <p class="section-label">// SCREENSHOTS</p>
+    <div class="slideshow slideshow-wide hud hud-orange" id="slideshow">
+      <span class="corner"></span>
+      <div class="slideshow-track">
+        <img class="slideshow-slide is-active" src="../assets/domino/domino-1.jpg" alt="Bakyi Domino main menu">
+        <img class="slideshow-slide" src="../assets/domino/domino-2.jpg" alt="Telephone match in progress, your move">
+        <img class="slideshow-slide" src="../assets/domino/domino-3.jpg" alt="Match end screen with final score">
+        <img class="slideshow-slide" src="../assets/domino/domino-4.jpg" alt="Rules screen">
+        <img class="slideshow-slide" src="../assets/domino/domino-5.jpg" alt="Friends room with room code">
+        <img class="slideshow-slide" src="../assets/domino/domino-6.jpg" alt="Settings with language, sound and accessibility options">
+        <img class="slideshow-slide" src="../assets/domino/domino-7.jpg" alt="Player stats screen">
+      </div>
+      <button class="slideshow-nav slideshow-prev" id="slideshow-prev" type="button" aria-label="Previous screenshot">‹</button>
+      <button class="slideshow-nav slideshow-next" id="slideshow-next" type="button" aria-label="Next screenshot">›</button>
+      <div class="slideshow-dots" id="slideshow-dots"></div>
+    </div>
+
+    <p class="section-label">// PLAY IN BROWSER</p>
+    <div class="webgl-frame hud hud-orange" id="webgl-frame" data-src="https://khvardan93.github.io/dumino_portfolio/">
+      <span class="corner"></span>
+      <div class="webgl-start" style="aspect-ratio:960/600;">
+        <button class="btn btn-play" id="webgl-start-btn" type="button">▶ START DEMO</button>
+        <p class="webgl-hint">Loads the WebGL build in this frame</p>
+      </div>
+      <button class="webgl-fullscreen-btn" id="webgl-fullscreen-btn" type="button" title="Fullscreen" hidden>⛶</button>
+    </div>
+    <p style="font-family:var(--font-mono); font-size:12px; color:var(--muted); margin-bottom:24px;">
+      Early demo build. Gameplay and visuals are still in progress.
+    </p>
+
+    <footer class="footer">
+      <p><a href="../index.html">← back to home</a></p>
+    </footer>
+
+  </div>
+
+  <script>
+    (function () {
+      var slides = document.querySelectorAll('#slideshow .slideshow-slide');
+      var dotsContainer = document.getElementById('slideshow-dots');
+      var current = 0;
+
+      slides.forEach(function (_, i) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'slideshow-dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'Go to screenshot ' + (i + 1));
+        dot.addEventListener('click', function () { goTo(i); });
+        dotsContainer.appendChild(dot);
+      });
+      var dots = document.querySelectorAll('.slideshow-dot');
+
+      function goTo(index) {
+        slides[current].classList.remove('is-active');
+        dots[current].classList.remove('is-active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('is-active');
+        dots[current].classList.add('is-active');
+      }
+
+      var autoplayDelay = 1000;
+      var autoplay = setInterval(function () { goTo(current + 1); }, autoplayDelay);
+
+      function resetAutoplay() {
+        clearInterval(autoplay);
+        autoplay = setInterval(function () { goTo(current + 1); }, autoplayDelay);
+      }
+
+      document.getElementById('slideshow-prev').addEventListener('click', function () { goTo(current - 1); resetAutoplay(); });
+      document.getElementById('slideshow-next').addEventListener('click', function () { goTo(current + 1); resetAutoplay(); });
+      dots.forEach(function (dot) { dot.addEventListener('click', resetAutoplay); });
+    })();
+
+    var webglFrame = document.getElementById('webgl-frame');
+    var webglStartBtn = document.getElementById('webgl-start-btn');
+    var webglFullscreenBtn = document.getElementById('webgl-fullscreen-btn');
+    var webglIframe;
+    webglStartBtn.addEventListener('click', function () {
+      webglIframe = document.createElement('iframe');
+      webglIframe.src = webglFrame.getAttribute('data-src');
+      webglIframe.title = 'Բakyi Domino — playable WebGL demo';
+      webglIframe.setAttribute('allow', 'fullscreen; gamepad');
+      webglFrame.querySelector('.webgl-start').remove();
+      webglFrame.insertBefore(webglIframe, webglFullscreenBtn);
+      webglFullscreenBtn.hidden = false;
+    });
+    webglFullscreenBtn.addEventListener('click', function () {
+      if (webglIframe && webglIframe.requestFullscreen) {
+        webglIframe.requestFullscreen();
+      }
+    });
+  </script>
+</body>
+</html>
